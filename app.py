@@ -21,12 +21,12 @@ def forward():
         <html>
         <head>
             <!-- Google tag (gtag.js) -->
-            <script async src="https://www.googletagmanager.com/gtag/js?id=G-8XYEBX44PM"></script>
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-GBNE0PD6WN"></script>
             <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', 'G-8XYEBX44PM');
+                gtag('config', 'G-GBNE0PD6WN');
             </script>
             <meta http-equiv="refresh" content="3;url=https://www.youtube.com/watch?v={{ video }}">
         </head>
