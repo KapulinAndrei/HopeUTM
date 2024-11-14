@@ -8,7 +8,7 @@ app = Flask(__name__)
 #Ping to keep server alive
 def keep_alive():
     try:
-        requests.get("http://localhost:5000")  #Ping self
+        requests.get("https://hopeutm.onrender.com:10000")  #Ping self
     except Exception as e:
         print("Error pinging the server:", e)
 
@@ -53,4 +53,4 @@ def forward():
         return "<h2>Smth went wrong</h2>"
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=10000, debug=True)
