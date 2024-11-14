@@ -1,7 +1,21 @@
 from flask import Flask, request, redirect, render_template_string
 import hashlib
+from apscheduler.schedulers.background import BackgroundScheduler
+import requests
 
 app = Flask(__name__)
+
+#Ping to keep server alive
+def keep_alive():
+    try:
+        requests.get("http://localhost:5000")  #Ping self
+    except Exception as e:
+        print("Error pinging the server:", e)
+
+#ping every 14 minutes
+scheduler = BackgroundScheduler()
+scheduler.add_job(keep_alive, 'interval', minutes=14)
+scheduler.start()
 
 @app.route('/')
 def forward():
@@ -11,11 +25,10 @@ def forward():
     if not video or not ctrl:
         return "<h2>Smth went wrong</h2>"
 
-    # Create the hashed string
+    #Hash
     hashed = hashlib.sha256(video.encode('utf-8')).hexdigest()[6:12]
 
     if ctrl == hashed:
-        # Render the page with the Google Tag and a redirect after a short delay
         html = '''
         <!DOCTYPE html>
         <html>
@@ -40,5 +53,4 @@ def forward():
         return "<h2>Smth went wrong</h2>"
 
 if __name__ == '__main__':
-    # Run the app on Render's default port or locally at 5000
     app.run(host='0.0.0.0', port=5000, debug=True)
