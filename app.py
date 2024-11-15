@@ -1,6 +1,5 @@
 from flask import Flask, request, redirect, render_template_string
 import hashlib
-from apscheduler.schedulers.background import BackgroundScheduler
 
 app = Flask(__name__)
 
