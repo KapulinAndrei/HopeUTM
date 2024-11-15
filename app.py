@@ -14,7 +14,7 @@ def keep_alive():
 
 #ping every 14 minutes
 scheduler = BackgroundScheduler()
-scheduler.add_job(keep_alive, 'interval', minutes=14)
+scheduler.add_job(keep_alive, 'interval', minutes=10)
 scheduler.start()
 
 @app.route('/')
