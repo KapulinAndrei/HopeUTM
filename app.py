@@ -8,13 +8,15 @@ app = Flask(__name__)
 #Ping to keep server alive
 def keep_alive():
     try:
-        requests.get("https://hopeutm.onrender.com:10000")  #Ping self
+        requests.get("0.0.0.0:10000", timeout=10) 
+        response.raise_for_status()
+        print("Ping successful:", response.status_code)
     except Exception as e:
         print("Error pinging the server:", e)
 
 #ping every 14 minutes
 scheduler = BackgroundScheduler()
-scheduler.add_job(keep_alive, 'interval', minutes=10)
+scheduler.add_job(keep_alive, 'interval', minutes=2)
 scheduler.start()
 
 @app.route('/')
